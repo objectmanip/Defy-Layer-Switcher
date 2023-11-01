@@ -1,0 +1,14 @@
+# layers are as presented in bazecor (the layer number)
+# layer to return to when no matching window is found
+base_layer: 0
+# layers matched with their corresponding programs (or exe-files)
+layers:
+  3:
+    - GenshinImpact.exe
+    - eso.exe
+  4:
+    - blender
+# interval in which the active window is checked in seconds
+refresh_interval: .2
+# port of the keyboard for RF and USB
+PORT: COM5

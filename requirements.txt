@@ -1,0 +1,5 @@
+pyserial~=3.5
+PyYAML~=5.1
+PyQt5~=5.15.8
+psutil~=5.9.4
+pywin32
