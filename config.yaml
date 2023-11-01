@@ -5,9 +5,6 @@ base_layer: 0
 layers:
   3:
     - GenshinImpact.exe
-    - eso.exe
-    - bg3.exe
-    - bg3_dx11.exe
   4:
     - blender
 # interval in which the active window is checked in seconds
