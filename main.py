@@ -23,11 +23,12 @@ class DygmaDefyController:
         while True:
             self.load_config()
             current_window = self.get_current_window()
-            layer = self.match_window(current_window)
-            if self.last_layer != layer:
-                self.switch_layer(layer)
-                self.last_layer = layer
-            time.sleep(self.config["refresh_interval"])
+            if current_window != self.config["bazecor"]:
+                layer = self.match_window(current_window)
+                if self.last_layer != layer:
+                    self.switch_layer(layer)
+                    self.last_layer = layer
+                time.sleep(self.config["refresh_interval"])
 
     def switch_layer(self, layer: int | str):
         try:
@@ -36,8 +37,6 @@ class DygmaDefyController:
             print(f"Switched to layer {layer}")
         except:
             print(f"An Error occurred communicating with the keyboard on port {self.config['PORT']}\nRetrying in 15 s")
-            time.sleep(15)
-            self.switch_layer(layer=layer)
 
     def match_window(self, process_name: str):
         '''
@@ -45,11 +44,15 @@ class DygmaDefyController:
         :param window_name:
         :return:
         '''
-        for layer in self.config["layers"]:
-            if any(program.lower() in process_name.lower() for program in self.config["layers"][layer]):
-                return layer
-        else:
-            return self.config["base_layer"]
+        try:
+            for layer in self.config["layers"]:
+                if any(program.lower() in process_name.lower() for program in self.config["layers"][layer]):
+                    return layer
+            else:
+                return self.config["base_layer"]
+        except AttributeError:
+            print("Failed gettings process name, returning last layer")
+            return self.last_layer
 
     def get_current_window(self):
         '''
