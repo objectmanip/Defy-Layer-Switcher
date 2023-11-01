@@ -9,6 +9,6 @@ layers:
   4:
     - blender
 # interval in which the active window is checked in seconds
-refresh_interval: .2
+refresh_interval: 1
 # port of the keyboard for RF and USB
 PORT: COM5
