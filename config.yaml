@@ -1,4 +1,4 @@
-# layers are as presented in bazecor (the layer number)
+# layers are as presented in bazecor (the layer number) minus 1
 # layer to return to when no matching window is found
 base_layer: 0
 # layers matched with their corresponding programs (or exe-files)
@@ -10,5 +10,5 @@ layers:
     - blender
 # interval in which the active window is checked in seconds
 refresh_interval: 1
-# port of the keyboard for RF and USB
+# port of the keyboard for RF and USB, can be seen when selecting the keyboard in bazecor
 PORT: COM5

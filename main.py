@@ -30,9 +30,14 @@ class DygmaDefyController:
             time.sleep(self.config["refresh_interval"])
 
     def switch_layer(self, layer: int | str):
-        ser = serial.Serial(self.config['PORT'])
-        ser.write(f"layer.moveTo {layer}".encode())
-        print(f"Switched to layer {layer}")
+        try:
+            ser = serial.Serial(self.config['PORT'])
+            ser.write(f"layer.moveTo {layer}".encode())
+            print(f"Switched to layer {layer}")
+        except:
+            print(f"An Error occurred communicating with the keyboard on port {self.config['PORT']}\nRetrying in 15 s")
+            time.sleep(15)
+            self.switch_layer(layer=layer)
 
     def match_window(self, process_name: str):
         '''
