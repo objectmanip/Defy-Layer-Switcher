@@ -1,6 +1,7 @@
 import time
 
 import serial
+from serial.serialutil import SerialException
 import yaml
 import win32gui, win32process, psutil
 from threading import Thread
@@ -13,6 +14,7 @@ class DygmaDefyController:
     def __init__(self):
         self.load_config()
         self.last_layer = "-1"
+        self.last_brightness = -1
         # auto switcher thread
         Thread(target=self.auto_switcher, daemon=True).start()
 
@@ -22,6 +24,8 @@ class DygmaDefyController:
         time.sleep(2)
         while True:
             self.load_config()
+
+            # layer control
             current_window = self.get_current_window()
             if current_window != self.config["bazecor"]:
                 layer = self.match_window(current_window)
@@ -29,14 +33,25 @@ class DygmaDefyController:
                     self.switch_layer(layer)
                     self.last_layer = layer
                 time.sleep(self.config["refresh_interval"])
-
     def switch_layer(self, layer: int | str):
         try:
-            ser = serial.Serial(self.config['PORT'])
-            ser.write(f"layer.moveTo {layer}".encode())
+            layer_switch_command = f"layer.moveTo {layer}".encode()
+            if self.config["mode"] == "rf" \
+                    or self.config["mode"] == "wired":
+                # send command via serial communication
+                ser = serial.Serial(self.config['PORT'])
+                ser.write(layer_switch_command)
+                ser.close()
+            elif self.config["mode"] == "bluetooth" \
+                or self.config["mode"] == "bl":
+                # send command via bluetooth
+                pass
             print(f"Switched to layer {layer}")
-        except:
+        except AttributeError as err:
             print(f"An Error occurred communicating with the keyboard on port {self.config['PORT']}\nRetrying in 15 s")
+            # time.sleep(15)
+        except SerialException as err:
+            print(f"Could not open seriel port {self.config['PORT']}, make sure the keyboard is connected and the port matches.")
 
     def match_window(self, process_name: str):
         '''

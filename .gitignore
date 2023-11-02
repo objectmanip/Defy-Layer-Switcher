@@ -1,4 +1,10 @@
-
+.gitignore
+.gitattributes
 *.pyw
 config.yaml
 /.idea/
+/build/
+/.vscode/
+/__pycache__/
+defylayerswitcher.spec
+compile.bat
