@@ -1,7 +1,6 @@
 .gitignore
 .gitattributes
 *.pyw
-config.yaml
 /.idea/
 /build/
 /.vscode/
