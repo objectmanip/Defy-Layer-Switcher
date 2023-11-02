@@ -1,1 +1,0 @@
-pyinstaller.exe main.py --name defylayerswitcher --onefile --noconsole --add-data="icons/dygma.ico;icons" --icon="./icons/dygma.ico"
