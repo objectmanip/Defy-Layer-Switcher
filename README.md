@@ -5,13 +5,14 @@ The layers won't switch while another program (like Bazecor) is occupying the co
 
 ---
 ## Install
-Either use the compiled files in *windows-compiled.zip* or *dist*. If you want to use the uncompiled .py-file, install copy the repository, run 
+Either use the compiled files in *windows-compiled.zip* or *dist*. If you want to use the uncompiled .py-file, copy the repository and run 
     
     pip install -r requirements.txt 
 
 and 
     
     py -3 main.py
+.
 
 ----
 ## How to use
