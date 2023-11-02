@@ -24,7 +24,7 @@ To switch automatically switch between layers, edit the *config.yaml* file.
 
 **refresh_interval** refers to how often the currently active window is checked
 
-**PORT** is the com port the keyboards neuron is connected to.
+**PORT** is the com port the keyboards neuron is connected to, which can be found when opening bazecor and selecting a keyboard.
 
 ---
 ## Limitations
