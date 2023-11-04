@@ -1,4 +1,4 @@
-# Dygma Layer Switcher
+# Dygma Defy and Raise Layer Switcher
 Simple tool to switch between layers of the dygma defy based on the currently active window. It currently only works for Microsoft Windows.
 
 The layers won't switch while another program (like Bazecor) is occupying the com port, but will continue function once other application is closed.
